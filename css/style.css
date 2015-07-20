@@ -145,7 +145,7 @@ article strong {
   font-weight: bolder;
 }
 article.page {
-  padding-left: 20px;
+  padding-left: 0px;
 }
 article.page .icon {
   display: none;
