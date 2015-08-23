@@ -5,7 +5,7 @@
   <subtitle><![CDATA[云山自青，清水自流。顺天而为，逆天而行。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="www.gcusky.com//"/>
-  <updated>2015-08-23T11:40:08.429Z</updated>
+  <updated>2015-08-23T14:01:57.048Z</updated>
   <id>www.gcusky.com//</id>
   
   <author>
@@ -16,21 +16,85 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[机器学习week1-1]]></title>
+    <link href="www.gcusky.com/2015/08/23/mlweek1-1/"/>
+    <id>www.gcusky.com/2015/08/23/mlweek1-1/</id>
+    <published>2015-08-23T14:00:35.000Z</published>
+    <updated>2015-08-23T14:01:57.048Z</updated>
+    <content type="html"><![CDATA[<h1 id="引言（INTRODUCTION）">引言（INTRODUCTION）</h1><h2 id="1-机器学习是什么">1.机器学习是什么</h2><p>　　一个比较古老的定义：</p>
+<blockquote>
+<p>　　机器学习研究的是如何赋予计算机在没有被明确编程的情况下仍能够学习的能力。(Field of study that fives computers the ability to learn without being explicitly programmed.)——<em>Arthur Samuel</em> 于1959年</p>
+</blockquote>
+<p>　　另一个比较现代且形式化的定义：</p>
+<blockquote>
+<p>　　对于某个任务 T 和表现的衡量 P，当计算机程序在该任务 T 的表现上，经过 P 的衡量，随着经验 E 而增长，我们便称计算机程序能够通过经验 E 来学习该任务。( computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.) ——<em>Tom Mitchell</em> 于1998年</p>
+</blockquote>
+<p>　　一些机器学习的应用举例：</p>
+<blockquote>
+<ol>
+<li>数据库挖掘</li>
+<li>一些无法通过手动编程来编写的应用：如自然语言处理，计算机视觉</li>
+<li>一些自助式的程序：如推荐系统</li>
+<li>理解人类是如何学习的</li>
+</ol>
+</blockquote>
+<h2 id="2-监督学习（Supervised_Learning）">2.监督学习（Supervised Learning）</h2><h3 id="举个栗子">举个栗子</h3><blockquote>
+<p>　　一个学生从波特兰俄勒冈州的研究所收集了一些房价的数据。你把这些数据画出来，看起来是这个样子：横表示房子的面积，单位是平方英尺，纵轴表示房价，单位是千美元（如下图）。那基于这组数据，假如你有一个朋友，他有一套 750 平方英尺房子，现在他希望把房子卖掉，他想知道这房子能卖多少钱。</p>
+</blockquote>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_1.png?imageView/2/w/700" alt=""></p>
+<p>　　现在，假设你希望能够预测一个750平方英尺的房屋的交易价格可能是多少。一种方法是根据这些数据点的分布，画一条合适的直线，然后根据这条直线来预测。在房价预测这个例子中，一个二次函数可能更适合已有的数据，我们可能会更希望用这个二次函数的曲线来进行预测。<br>　　<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_2.png" alt=""></p>
+<p>　　两个方案中有一个能让你朋友的房子出售得更合理。这些都是学习算法里面很好的例子。我们称这样的学习为监督学习。称其为监督式的学习，因为我们预先给了算法“正确结果” ——即所有我们观察到的变量。<br>　　上面这个问题又称为回归问题（Regression），因为我们能预测的结果是连续的值。</p>
+<hr>
+<h3 id="另一个栗子">另一个栗子</h3><blockquote>
+<p>　　假使你希望预测一个乳腺癌是否是恶性的，你有一个数据集。这个数据集中，横轴表示肿瘤的大小，纵轴上，标出的1和0表示是或者不是恶性肿瘤。我们之前见过的肿瘤，如果是恶性则记为1，不是恶性，或者说良性记为 0。</p>
+</blockquote>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_3.png" alt="无年龄"></p>
+<blockquote>
+<p>　　若你现在有的数据是不同年龄的病人和她们身上肿瘤的尺寸以及这些肿瘤是否是恶性的。如果我们将这些信息绘制成一张2D图表，以横坐标为肿瘤的尺寸，以纵坐标为病人的年龄，以O代表良性肿瘤，以X代表恶性肿瘤。则我们的算法要学习的问题就变成了如何分割良性肿瘤和恶性肿瘤。</p>
+</blockquote>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_4.png" alt="有年龄"></p>
+<p>　　这样的问题是分类问题（Classification），我们希望算法能够学会如何将数据分类到不同的类里。<br>　　上面的例子中我们只适用了两个特征（features）来进行分类，现实中，我们会有非常多的特征，并且我们希望算法能够处理无限多数量的特征，在课程后面我们会介绍能够处理这样问题的算法，例如<strong>支持向量机（Support Vector Machine）</strong>。</p>
+<h2 id="3-无监督学习（Unsupervised_Learning）">3.无监督学习（Unsupervised Learning）</h2><p>　　在监督学习中，无论是回归问题还是分类问题，我们的数据都具有一个结果（房价问题中的房价，肿瘤问题中的良性与否）。<br>　　而在无监督学习中，我们的现有数据中并没有结果，我们有的只是特征，因而无监督学习要解决的问题是发现这些数据是否可以分为不同的组。</p>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_5.png" alt=""></p>
+<p>无监督学习算法可能会把这些数据分成两个不同的簇。所以叫做聚类算法（Clustering）。事实证明，它能被用在很多地方。<br>1.谷歌新闻 <a href="http://news.google.com/" title="谷歌新闻" target="_blank" rel="external">news.google.com</a><br>2.检验不同的个体是否有着一个特定的基因，把个体聚类到不同的类或不同类型的组（人）：<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_6.png" alt=""><br>3.组织计算机集群、社会网络分析、市场细分、天文数据分析：<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_7.png" alt=""></p>
+<h3 id="举个栗子：鸡尾酒会问题（Cocktail_Party_Problem）">举个栗子：鸡尾酒会问题（Cocktail Party Problem）</h3><blockquote>
+<p>在一个满是人的房间中，人们都在互相对话，我们使用一些麦克风录下房间中的声音，利用非监督学习算法来识别房间中某一个人所说的话。</p>
+</blockquote>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_8.png?imageView/2/h/300" alt=""></p>
+<h3 id="Answer">Answer</h3><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">%</span>下面这个只有一行的机器学习算法（Octave）可以非常漂亮地将两个人的说话给分离开来：</span><br><span class="line">[W,s,v] = svd<span class="params">(<span class="params">(repmat<span class="params">(sum<span class="params">(x.*x,<span class="number">1</span>)</span>,size<span class="params">(x,<span class="number">1</span>)</span>,<span class="number">1</span>)</span>.*x)</span>*x')</span>;</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="引言（INTRODUCTION）">引言（INTRODUCTION）</h1><h2 id="1-机器学习是什么">1.机器学习是什么</h2><p>　　一个比较古老的定义：</p>
+<blockquote>
+<p>　　机器学习研究的是如何赋予计算机在没有被明确编]]>
+    </summary>
+    
+      <category term="MOOC笔记" scheme="www.gcusky.com/tags/MOOC%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="无监督学习" scheme="www.gcusky.com/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="机器学习" scheme="www.gcusky.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="监督学习" scheme="www.gcusky.com/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="机器学习" scheme="www.gcusky.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[二分法求解非线性方程]]></title>
     <link href="www.gcusky.com/2015/08/23/dichotomie/"/>
     <id>www.gcusky.com/2015/08/23/dichotomie/</id>
     <published>2015-08-23T11:30:56.000Z</published>
-    <updated>2015-08-23T11:40:08.429Z</updated>
-    <content type="html"><![CDATA[<h1 id="原理">原理</h1><p>在所有数值方法中，二分法是求解非线性方程最直观、最简单的方法。二分法是以连续函数的介值定理为基础建立的。由介值定理可知，如果函数$f(x)$在区间$[a,b]$上连续，同时$f(a)f(b)&lt;0$，即$f(a)$和$f(b)$符号相反，那么$f(x)$在区间$[a,b]$内一定有实根。</p>
-<p>二分法的基本思想为：用对分区间的思路根据分点处函数$f(x)$的符号逐步将有限区间缩小使在足够小的区间内，分点与理论上的根之间距离足够小，继而用分点的值近似理论上的根。<br><a id="more"></a></p>
+    <updated>2015-08-23T11:54:53.140Z</updated>
+    <content type="html"><![CDATA[<h1 id="原理">原理</h1><p>　　在所有数值方法中，二分法是求解非线性方程最直观、最简单的方法。二分法是以连续函数的介值定理为基础建立的。由介值定理可知，如果函数$f(x)$在区间$[a,b]$上连续，同时$f(a)f(b)<0$，即$f(a)$和$f(b)$符号相反，那么$f(x)$在区间$[a,b]$内一定有实根。 　　二分法的基本思想为：用对分区间的思路根据分点处函数$f(x)$的符号逐步将有限区间缩小使在足够小的区间内，分点与理论上的根之间距离足够小，继而用分点的值近似理论上的根。="" <a="" id="more"></0$，即$f(a)$和$f(b)$符号相反，那么$f(x)$在区间$[a,b]$内一定有实根。></p>
 <h1 id="函数ditomy-m">函数ditomy.m</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[x0,fval]</span> = <span class="title">ditomy</span><span class="params">(fun,a,b,D)</span></span></span><br><span class="line"><span class="comment">%ditomy.m函数为二分法求解非线性方程</span></span><br><span class="line">fa = feval(fun,a);    <span class="comment">%计算a点函数值</span></span><br><span class="line">fb = feval(fun,b);    <span class="comment">%计算b点函数值</span></span><br><span class="line"><span class="keyword">if</span> fa*fb &gt; <span class="number">0</span>;</span><br><span class="line">    error(<span class="string">'此方程无解'</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> nargin &lt; <span class="number">3</span>;    <span class="comment">%检查输入参数个数</span></span><br><span class="line">    error(<span class="string">'a与b将被重定义'</span>);</span><br><span class="line"><span class="keyword">elseif</span> nargin == <span class="number">3</span>;</span><br><span class="line">    D = <span class="number">1e-6</span>;    <span class="comment">%设置D的缺省值</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> fa == <span class="number">0</span>;    <span class="comment">%检查a点函数值是否为0</span></span><br><span class="line">    m = a;</span><br><span class="line">    fm = fa;</span><br><span class="line"><span class="keyword">elseif</span> fb == <span class="number">0</span>;    <span class="comment">%检查b点函数值是否为0</span></span><br><span class="line">    m = b;</span><br><span class="line">    fm = fb;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">abs</span>(b-a) &gt; D;    <span class="comment">%控制二分法结束条件</span></span><br><span class="line">        m = <span class="matrix">[a+b]</span>/<span class="number">2</span>;    <span class="comment">%二分区间端点</span></span><br><span class="line">        fm = feval(fun,m);    <span class="comment">%计算中点的函数值</span></span><br><span class="line">        <span class="keyword">if</span> fa*fm &gt; <span class="number">0</span>;    <span class="comment">%条件</span></span><br><span class="line">            a = m;    <span class="comment">%端点更新</span></span><br><span class="line">            fa = fm;    <span class="comment">%端点函数更新</span></span><br><span class="line">        <span class="keyword">elseif</span> fb*fm &gt; <span class="number">0</span>;    <span class="comment">%条件</span></span><br><span class="line">            b = m;    <span class="comment">%端点更新</span></span><br><span class="line">            fb = fm;    <span class="comment">%端点函数更新</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">x0 = m;</span><br><span class="line"><span class="keyword">if</span> nargout == <span class="number">2</span>;</span><br><span class="line">    fval = fm;    <span class="comment">%根据输出个数赋值</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h1 id="举个栗子">举个栗子</h1><blockquote>
 <p>用二分法求方程$f(x)=x^3cos(x)+2x^3-2sinx$在区间$[1,3]$内的根。</p>
 </blockquote>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%非线性方程的m文件<span class="function"><span class="keyword">fun</span>.m</span></span><br><span class="line">function f = <span class="function"><span class="title">fun</span><span class="params">(x)</span></span></span><br><span class="line">f = x^<span class="number">3</span>*cos(x)+<span class="number">2</span>*x^<span class="number">2</span>-<span class="number">2</span>sin(x);</span><br><span class="line"></span><br><span class="line">%调用编写的二分函数求解非线性方程</span><br><span class="line">[x0,fval] = ditomy('<span class="function"><span class="keyword">fun</span>',1,3);</span></span><br><span class="line"></span><br><span class="line">%运行结果</span><br><span class="line">%x0 = <span class="number">2.3978</span></span><br><span class="line">%fval = -<span class="number">4.1724e-06</span></span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="原理">原理</h1><p>在所有数值方法中，二分法是求解非线性方程最直观、最简单的方法。二分法是以连续函数的介值定理为基础建立的。由介值定理可知，如果函数$f(x)$在区间$[a,b]$上连续，同时$f(a)f(b)&lt;0$，即$f(a)$和$f(b)$符号相反，那么$f(x)$在区间$[a,b]$内一定有实根。</p>
-<p>二分法的基本思想为：用对分区间的思路根据分点处函数$f(x)$的符号逐步将有限区间缩小使在足够小的区间内，分点与理论上的根之间距离足够小，继而用分点的值近似理论上的根。<br>]]>
+    <![CDATA[<h1 id="原理">原理</h1><p>　　在所有数值方法中，二分法是求解非线性方程最直观、最简单的方法。二分法是以连续函数的介值定理为基础建立的。由介值定理可知，如果函数$f(x)$在区间$[a,b]$上连续，同时$f(a)f(b)<0$，即$f(a)$和$f(b)$符号相反，那么$f(x)$在区间$[a,b]$内一定有实根。  
+　　二分法的基本思想为：用对分区间的思路根据分点处函数$f(x)$的符号逐步将有限区间缩小使在足够小的区间内，分点与理论上的根之间距离足够小，继而用分点的值近似理论上的根。]]>
     
     </summary>
     
