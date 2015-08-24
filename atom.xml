@@ -5,7 +5,7 @@
   <subtitle><![CDATA[云山自青，清水自流。顺天而为，逆天而行。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="www.gcusky.com//"/>
-  <updated>2015-08-24T02:25:04.447Z</updated>
+  <updated>2015-08-24T09:24:29.397Z</updated>
   <id>www.gcusky.com//</id>
   
   <author>
@@ -16,12 +16,83 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[机器学习week1-2]]></title>
+    <link href="www.gcusky.com/2015/08/24/mlweek1-2/"/>
+    <id>www.gcusky.com/2015/08/24/mlweek1-2/</id>
+    <published>2015-08-24T09:23:15.000Z</published>
+    <updated>2015-08-24T09:24:29.397Z</updated>
+    <content type="html"><![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>单变量线性回归,模型表达,代价函数,梯度下降</code></p>
+<h1 id="单变量线性回归(Linear_Regression_with_One_Variable)">单变量线性回归(Linear Regression with One Variable)</h1><a id="more"></a>
+<h2 id="1-模型表达（Model_Representation）">1.模型表达（Model Representation）</h2><p>　　以之前的房屋交易问题为例，假使我们回归问题的训练集（Training Set）如下表所示：<br>$Size$ $in$ $feet^2(x)$ | $Price(\$)$ $in$ $1000’s(y)$<br>:——:|:——:<br>2104 | 460<br>1416 | 232<br>1534 | 315<br>852 | 178<br>… | …  </p>
+<p>　　我们将要用来描述这个回归问题的标记如下:</p>
+<ul>
+<li>$m$ 代表训练集中实例的数量</li>
+<li>$x$ 代表特征/输入变量</li>
+<li>$y$ 代表目标变量/输出变量</li>
+<li>$(x,y)$ 代表训练集中的实例</li>
+<li>$(x^{(i)},y^{(i)})$ 代表第 i 个观察实例</li>
+<li>$h$ 代表学习算法的解决方案或函数也称为假设（hypothesis）</li>
+</ul>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_9.png" alt=""></p>
+<p>　　因而，要解决房价预测问题，我们实际上是要将训练集“喂”给我们的学习算法，进而学习得一个假设 $h$，然后将我们要预测的房屋的尺寸作为输入变量输入给 $h$，预测出该房屋的交易价格作为输出变量输出为结果。那么，对于我们的房价预测问题，我们该如何表达 $h$？<br>　　一种可能的表达方式为：$h_θ=θ_0+θ_1x$；因为只含有一个特征/输入变量，因此这样的问题叫作<strong>单变量线性回归问题</strong>。</p>
+<h2 id="2-代价函数（Cost_Function）">2.代价函数（Cost Function）</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Hypothesis:</th>
+<th style="text-align:center">$h_θ=θ_0+θ_1x$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Parameters:</td>
+<td style="text-align:center">$θ_0$, $θ_0$</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Cost Function:</strong></td>
+<td style="text-align:center">$J(θ<em>0,θ_1)=\frac{1}{2m}\sum\limits^m</em>{i=1}(h_θ(x^{(i)})-y^{(i)})^2$</td>
+</tr>
+<tr>
+<td style="text-align:center">Goal:</td>
+<td style="text-align:center">$\mathop{minimize} \limits_{θ_0,θ_1}J(θ_0,θ_1)$</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_10.png" alt=""><br>　　我们现在要做的便是为我们的模型选择合适的参数（parameters）$θ<em>0$和 $θ_1$，在房价问题这个例子中便是直线的斜率和在 $y$ 轴上的截距。<br>　　我们选择的参数决定了我们得到的直线相对于我们的训练集的准确程度，模型所预测的值与训练集中实际值之间的差距就是<strong>建模误差（modeling error）</strong>。<br>　　我们的目标便是选择出可以使得建模误差的平方和能够最小的模型参数。<br>　　即使得代价函数$J(θ_0,θ_1)=\frac{1}{2m}\sum^m</em>{i=1}(h_θ(x^{(i)})-y^{(i)})^2$最小。接下来我们绘制一个等高线图， $(x,y,z)$ 三个坐标分别为 $θ_0$ 和 $θ_1$和 $J(θ_0,θ_1)$：<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_11.png" alt=""><br>　　则可以看出在三维空间中存在一个使得 $J(θ_0,θ_1)$ 最小的点。<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_12.png" alt="其中一种拟合情况"></p>
+<h2 id="3-梯度下降（Gradient_Descent）">3.梯度下降（Gradient Descent）</h2><h3 id="基本思想">基本思想</h3><p>　　开始时我们随机选择一个参数的组合$（θ_0,θ_1,…,θ_n）$，计算代价函数，然后我们寻找下一个能让代价函数值下降最多的参数组合。 我们持续这么做直到到到一个<strong>局部最小值（local minimum）</strong>,因为我们并没有尝试完所有的参数组合，所以不能确定我们得到的局部最小值是否便是<strong>全局最小值（global minimum）</strong>,选择不同的初始参数组合，可能会找到不同的局部最小值（如下图）。<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_13.png" alt=""><br><img src="http://cloud.gcusky.com/MLMOOC/ML1_15.png" alt=""></p>
+<h2 id="4-对线性回归运用梯度下降法">4.对线性回归运用梯度下降法</h2><h3 id="4-1梯度下降的直观理解">4.1梯度下降的直观理解</h3><p>　　梯度下降是一个用来求函数最小值的算法，我们将使用梯度下降算法来求出代价函数 $J(θ_0,θ_1)$ 的最小值。<br>　　梯度下降算法：$θ_j:=θ_j-α\frac{\partial}{\partialθ_j}J(θ_0,θ_1)$<br>　　对 $θ$ 赋值，使得 $J(θ)$ 按梯度下降最快方向进行，一直迭代下去，最终得到局部最小值。其中 $α$ 是<strong>学习率（learning rate）</strong>，它决定了我们沿着能让代价函数下降程度最大的方向向下迈出的步子有多大。<strong>注意：计算时 $θ_0$ 和 $θ_1$ 要同步更新（simultaneous update）。</strong><br><img src="http://cloud.gcusky.com/MLMOOC/ML1_14.png" alt=""></p>
+<h3 id="4-2梯度下降的线性回归">4.2梯度下降的线性回归</h3><p>　　梯度下降算法和线性回归算法比较如图：<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_16.png" alt=""><br>　　对我们之前的线性回归问题运用梯度下降法，关键在于求出代价函数的导数，即：<br>$\frac{\partial}{\partialθ<em>j}J(θ_0,θ_1)=\frac{\partial}{\partialθ_j}\frac{1}{2m}\sum\limits^m</em>{i=1}(h<em>θ(x^{(i)})-y^{(i)})^2$<br>　　$j=0$ 时：$\frac{\partial}{\partialθ_0}J(θ_0,θ_1)=\frac{1}{m}\sum\limits^m</em>{i=1}(h<em>θ(x^{(i)})-y^{(i)})$<br>　　$j=1$ 时：$\frac{\partial}{\partialθ_1}J(θ_0,θ_1)=\frac{1}{m}\sum\limits^m</em>{i=1}(h_θ(x^{(i)})-y^{(i)})·x^{(i)}$<br>　　则算法改写成：<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_17.png" alt=""></p>
+<p>　　拟合情况：<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_18.png" alt=""><br><img src="http://cloud.gcusky.com/MLMOOC/ML1_19.png" alt=""><br><img src="http://cloud.gcusky.com/MLMOOC/ML1_20.png" alt=""></p>
+<p>　　<br>参考资料<br><a href="http://mooc.guokr.com/note/12/" title="MOOC学院" target="_blank" rel="external">机器学习课笔记 —— Ryan Cheung</a><br><a href="http://mooc.guokr.com/note/16274/" title="MOOC学院" target="_blank" rel="external">机器学习教程个人笔记（V2.5）—— 黄海广</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>单变量线性回归,模型表达,代价函数,梯度下降</code></p>
+<h1 id="单变量线性回归(Linear_Regression_with_One_Variable)">单变量线性回归(Linear Regression with One Variable)</h1>]]>
+    
+    </summary>
+    
+      <category term="MOOC笔记" scheme="www.gcusky.com/tags/MOOC%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="代价函数" scheme="www.gcusky.com/tags/%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="单变量线性回归" scheme="www.gcusky.com/tags/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"/>
+    
+      <category term="机器学习" scheme="www.gcusky.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="梯度下降" scheme="www.gcusky.com/tags/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/"/>
+    
+      <category term="模型表达" scheme="www.gcusky.com/tags/%E6%A8%A1%E5%9E%8B%E8%A1%A8%E8%BE%BE/"/>
+    
+      <category term="机器学习" scheme="www.gcusky.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[机器学习week1-1]]></title>
     <link href="www.gcusky.com/2015/08/23/mlweek1-1/"/>
     <id>www.gcusky.com/2015/08/23/mlweek1-1/</id>
     <published>2015-08-23T14:00:35.000Z</published>
-    <updated>2015-08-24T02:25:04.447Z</updated>
-    <content type="html"><![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code></p>
+    <updated>2015-08-24T02:31:57.302Z</updated>
+    <content type="html"><![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>监督学习,无监督学习</code></p>
 <h1 id="引言（INTRODUCTION）">引言（INTRODUCTION）</h1><a id="more"></a>
 <h2 id="1-机器学习是什么">1.机器学习是什么</h2><p>　　一个比较古老的定义：</p>
 <blockquote>
@@ -50,24 +121,24 @@
 <h3 id="另一个栗子">另一个栗子</h3><blockquote>
 <p>　　假使你希望预测一个乳腺癌是否是恶性的，你有一个数据集。这个数据集中，横轴表示肿瘤的大小，纵轴上，标出的1和0表示是或者不是恶性肿瘤。我们之前见过的肿瘤，如果是恶性则记为1，不是恶性，或者说良性记为 0。</p>
 </blockquote>
-<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_3.png" alt="无年龄"></p>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_3.png" alt="无年龄数据的情况"></p>
 <blockquote>
 <p>　　若你现在有的数据是不同年龄的病人和她们身上肿瘤的尺寸以及这些肿瘤是否是恶性的。如果我们将这些信息绘制成一张2D图表，以横坐标为肿瘤的尺寸，以纵坐标为病人的年龄，以O代表良性肿瘤，以X代表恶性肿瘤。则我们的算法要学习的问题就变成了如何分割良性肿瘤和恶性肿瘤。</p>
 </blockquote>
-<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_4.png" alt="有年龄"></p>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_4.png" alt="有年龄数据的情况"></p>
 <p>　　这样的问题是分类问题（Classification），我们希望算法能够学会如何将数据分类到不同的类里。<br>　　上面的例子中我们只适用了两个特征（features）来进行分类，现实中，我们会有非常多的特征，并且我们希望算法能够处理无限多数量的特征，在课程后面我们会介绍能够处理这样问题的算法，例如<strong>支持向量机（Support Vector Machine）</strong>。</p>
 <h2 id="3-无监督学习（Unsupervised_Learning）">3.无监督学习（Unsupervised Learning）</h2><p>　　在监督学习中，无论是回归问题还是分类问题，我们的数据都具有一个结果（房价问题中的房价，肿瘤问题中的良性与否）。<br>　　而在无监督学习中，我们的现有数据中并没有结果，我们有的只是特征，因而无监督学习要解决的问题是发现这些数据是否可以分为不同的组。</p>
-<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_5.png" alt=""></p>
+<p><img src="http://cloud.gcusky.com/MLMOOC/ML1_5.png" alt="supervised Learning &amp; Unsupervised Learning"></p>
 <p>无监督学习算法可能会把这些数据分成两个不同的簇。所以叫做聚类算法（Clustering）。事实证明，它能被用在很多地方。<br>1.谷歌新闻 <a href="http://news.google.com/" title="谷歌新闻" target="_blank" rel="external">news.google.com</a><br>2.检验不同的个体是否有着一个特定的基因，把个体聚类到不同的类或不同类型的组（人）：<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_6.png" alt=""><br>3.组织计算机集群、社会网络分析、市场细分、天文数据分析：<br><img src="http://cloud.gcusky.com/MLMOOC/ML1_7.png" alt=""></p>
 <h3 id="举个栗子：鸡尾酒会问题（Cocktail_Party_Problem）">举个栗子：鸡尾酒会问题（Cocktail Party Problem）</h3><blockquote>
 <p>在一个满是人的房间中，人们都在互相对话，我们使用一些麦克风录下房间中的声音，利用非监督学习算法来识别房间中某一个人所说的话。</p>
 </blockquote>
 <p><img src="http://cloud.gcusky.com/MLMOOC/ML1_8.png?imageView/2/h/300" alt=""></p>
 <h3 id="Answer">Answer</h3><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">%</span>下面这个只有一行的机器学习算法（Octave）可以非常漂亮地将两个人的说话给分离开来：</span><br><span class="line">[W,s,v] = svd<span class="params">(<span class="params">(repmat<span class="params">(sum<span class="params">(x.*x,<span class="number">1</span>)</span>,size<span class="params">(x,<span class="number">1</span>)</span>,<span class="number">1</span>)</span>.*x)</span>*x')</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="">　　</h2><p>参考资料<br><a href="http://mooc.guokr.com/note/12/" title="MOOC学院" target="_blank" rel="external">机器学习课笔记 —— Ryan Cheung</a><br><a href="http://mooc.guokr.com/note/16274/" title="MOOC学院" target="_blank" rel="external">机器学习教程个人笔记（V2.5）—— 黄海广</a></p>
+<p>　　<br>参考资料<br><a href="http://mooc.guokr.com/note/12/" title="MOOC学院" target="_blank" rel="external">机器学习课笔记 —— Ryan Cheung</a><br><a href="http://mooc.guokr.com/note/16274/" title="MOOC学院" target="_blank" rel="external">机器学习教程个人笔记（V2.5）—— 黄海广</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code></p>
+    <![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>监督学习,无监督学习</code></p>
 <h1 id="引言（INTRODUCTION）">引言（INTRODUCTION）</h1>]]>
     
     </summary>
@@ -89,7 +160,7 @@
     <link href="www.gcusky.com/2015/08/23/dichotomie/"/>
     <id>www.gcusky.com/2015/08/23/dichotomie/</id>
     <published>2015-08-23T11:30:56.000Z</published>
-    <updated>2015-08-24T02:24:53.043Z</updated>
+    <updated>2015-08-24T02:26:20.173Z</updated>
     <content type="html"><![CDATA[<p>　　在所有数值方法中，二分法是求解非线性方程最直观、最简单的方法。二分法是以连续函数的介值定理为基础建立的。由介值定理可知，如果函数$f(x)$在区间$[a,b]$上连续，同时$f(a)f(b)<0$，即$f(a)$和$f(b)$符号相反，那么$f(x)$在区间$[a,b]$内一定有实根。 <a="" id="more"></0$，即$f(a)$和$f(b)$符号相反，那么$f(x)$在区间$[a,b]$内一定有实根。></p>
 <h1 id="原理">原理</h1><p>　　二分法的基本思想为：用对分区间的思路根据分点处函数$f(x)$的符号逐步将有限区间缩小使在足够小的区间内，分点与理论上的根之间距离足够小，继而用分点的值近似理论上的根。</p>
 <h1 id="函数ditomy-m">函数ditomy.m</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[x0,fval]</span> = <span class="title">ditomy</span><span class="params">(fun,a,b,D)</span></span></span><br><span class="line"><span class="comment">%ditomy.m函数为二分法求解非线性方程</span></span><br><span class="line">fa = feval(fun,a);    <span class="comment">%计算a点函数值</span></span><br><span class="line">fb = feval(fun,b);    <span class="comment">%计算b点函数值</span></span><br><span class="line"><span class="keyword">if</span> fa*fb &gt; <span class="number">0</span>;</span><br><span class="line">    error(<span class="string">'此方程无解'</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> nargin &lt; <span class="number">3</span>;    <span class="comment">%检查输入参数个数</span></span><br><span class="line">    error(<span class="string">'a与b将被重定义'</span>);</span><br><span class="line"><span class="keyword">elseif</span> nargin == <span class="number">3</span>;</span><br><span class="line">    D = <span class="number">1e-6</span>;    <span class="comment">%设置D的缺省值</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> fa == <span class="number">0</span>;    <span class="comment">%检查a点函数值是否为0</span></span><br><span class="line">    m = a;</span><br><span class="line">    fm = fa;</span><br><span class="line"><span class="keyword">elseif</span> fb == <span class="number">0</span>;    <span class="comment">%检查b点函数值是否为0</span></span><br><span class="line">    m = b;</span><br><span class="line">    fm = fb;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">abs</span>(b-a) &gt; D;    <span class="comment">%控制二分法结束条件</span></span><br><span class="line">        m = <span class="matrix">[a+b]</span>/<span class="number">2</span>;    <span class="comment">%二分区间端点</span></span><br><span class="line">        fm = feval(fun,m);    <span class="comment">%计算中点的函数值</span></span><br><span class="line">        <span class="keyword">if</span> fa*fm &gt; <span class="number">0</span>;    <span class="comment">%条件</span></span><br><span class="line">            a = m;    <span class="comment">%端点更新</span></span><br><span class="line">            fa = fm;    <span class="comment">%端点函数更新</span></span><br><span class="line">        <span class="keyword">elseif</span> fb*fm &gt; <span class="number">0</span>;    <span class="comment">%条件</span></span><br><span class="line">            b = m;    <span class="comment">%端点更新</span></span><br><span class="line">            fb = fm;    <span class="comment">%端点函数更新</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">x0 = m;</span><br><span class="line"><span class="keyword">if</span> nargout == <span class="number">2</span>;</span><br><span class="line">    fval = fm;    <span class="comment">%根据输出个数赋值</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
@@ -97,8 +168,7 @@
 <p>用二分法求方程$f(x)=x^3cos(x)+2x^3-2sinx$在区间$[1,3]$内的根。</p>
 </blockquote>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%非线性方程的m文件<span class="function"><span class="keyword">fun</span>.m</span></span><br><span class="line">function f = <span class="function"><span class="title">fun</span><span class="params">(x)</span></span></span><br><span class="line">f = x^<span class="number">3</span>*cos(x)+<span class="number">2</span>*x^<span class="number">2</span>-<span class="number">2</span>sin(x);</span><br><span class="line"></span><br><span class="line">%调用编写的二分函数求解非线性方程</span><br><span class="line">[x0,fval] = ditomy('<span class="function"><span class="keyword">fun</span>',1,3);</span></span><br><span class="line"></span><br><span class="line">%运行结果</span><br><span class="line">%x0 = <span class="number">2.3978</span></span><br><span class="line">%fval = -<span class="number">4.1724e-06</span></span><br></pre></td></tr></table></figure>
-<hr>
-<p>参考资料<br><a href="http://item.jd.com/11544215.html" title="京东" target="_blank" rel="external">MATLABR2013a求解数学问题</a></p>
+<p>　　<br>参考资料<br><a href="http://item.jd.com/11544215.html" title="京东" target="_blank" rel="external">MATLABR2013a求解数学问题</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>　　在所有数值方法中，二分法是求解非线性方程最直观、最简单的方法。二分法是以连续函数的介值定理为基础建立的。由介值定理可知，如果函数$f(x)$在区间$[a,b]$上连续，同时$f(a)f(b)<0$，即$f(a)$和$f(b)$符号相反，那么$f(x)$在区间$[a,b]$内一定有实根。]]>
