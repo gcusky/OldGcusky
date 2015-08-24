@@ -107,7 +107,8 @@ var _hmt = _hmt || [];
       
         <p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>单变量线性回归,模型表达,代价函数,梯度下降</code></p>
 <h1 id="单变量线性回归(Linear_Regression_with_One_Variable)">单变量线性回归(Linear Regression with One Variable)</h1><a id="more"></a>
-<h2 id="1-模型表达（Model_Representation）">1.模型表达（Model Representation）</h2><p>　　以之前的房屋交易问题为例，假使我们回归问题的训练集（Training Set）如下表所示：<br> | Size in feet<sub>2</sub>(x) | Price($) in 1000’<sub>s</sub>(y)  |<br> | :—-:|:—-: |<br> | 2104 | 460  |<br> | 1416 | 232  |<br> | 1534 | 315  |<br> | 852 | 178   |<br> | …  | …   | </p>
+<h2 id="1-模型表达（Model_Representation）">1.模型表达（Model Representation）</h2><p>　　以之前的房屋交易问题为例，假使我们回归问题的训练集（Training Set）如下表所示：</p>
+<p>Size in feet<sup>2</sup>(x)|Price($) in 1000’s(y)<br>2104|460<br>1416|232<br>1534|315<br>852|178<br>…|…</p>
 <p>　　我们将要用来描述这个回归问题的标记如下:</p>
 <ul>
 <li>$m$ 代表训练集中实例的数量</li>
@@ -133,7 +134,7 @@ var _hmt = _hmt || [];
 </tr>
 <tr>
 <td style="text-align:center"><strong>Cost Function:</strong></td>
-<td style="text-align:center">$J(θ<em>{0}\,θ</em>{1})=\frac{1}{2m}\sum\limits^m<em>{i=1}(h</em>θ(x^{(i)})-y^{(i)})^2$</td>
+<td style="text-align:center">$J(θ<em>{0} θ</em>{1})=\frac{1}{2m}\sum\limits^m<em>{i=1}(h</em>θ(x^{(i)})-y^{(i)})^2$</td>
 </tr>
 <tr>
 <td style="text-align:center">Goal:</td>
