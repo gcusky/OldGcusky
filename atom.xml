@@ -5,7 +5,7 @@
   <subtitle><![CDATA[云山自青，清水自流。顺天而为，逆天而行。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="www.gcusky.com//"/>
-  <updated>2015-08-24T09:53:32.348Z</updated>
+  <updated>2015-08-24T09:58:18.092Z</updated>
   <id>www.gcusky.com//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="www.gcusky.com/2015/08/24/mlweek1-2/"/>
     <id>www.gcusky.com/2015/08/24/mlweek1-2/</id>
     <published>2015-08-24T09:23:15.000Z</published>
-    <updated>2015-08-24T09:53:32.348Z</updated>
+    <updated>2015-08-24T09:58:18.092Z</updated>
     <content type="html"><![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>单变量线性回归,模型表达,代价函数,梯度下降</code></p>
 <h1 id="单变量线性回归(Linear_Regression_with_One_Variable)">单变量线性回归(Linear Regression with One Variable)</h1><a id="more"></a>
 <h2 id="1-模型表达（Model_Representation）">1.模型表达（Model Representation）</h2><p>　　以之前的房屋交易问题为例，假使我们回归问题的训练集（Training Set）如下表所示：</p>
@@ -79,7 +79,7 @@
 </tr>
 <tr>
 <td style="text-align:center"><strong>Cost Function:</strong></td>
-<td style="text-align:center">$J(θ<em>{0} θ</em>{1})=\frac{1}{2m}\sum\limits^m<em>{i=1}(h</em>θ(x^{(i)})-y^{(i)})^2$</td>
+<td style="text-align:center">$\frac{1}{2m}\sum\limits^m<em>{i=1}(h</em>θ(x^{(i)})-y^{(i)})^2$</td>
 </tr>
 <tr>
 <td style="text-align:center">Goal:</td>
