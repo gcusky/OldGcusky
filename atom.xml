@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   
   <title><![CDATA[薛定谔的软猫]]></title>
-  <subtitle><![CDATA[云山自青，清水自流。顺天而为，逆天而行。]]></subtitle>
+  <subtitle><![CDATA[hxhx云山自青，清水自流。顺天而为，逆天而行。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="www.gcusky.com//"/>
-  <updated>2015-08-24T12:01:36.767Z</updated>
+  <updated>2015-08-29T10:15:08.285Z</updated>
   <id>www.gcusky.com//</id>
   
   <author>
@@ -20,8 +20,8 @@
     <link href="www.gcusky.com/2015/08/24/mlweek1-2/"/>
     <id>www.gcusky.com/2015/08/24/mlweek1-2/</id>
     <published>2015-08-24T09:23:15.000Z</published>
-    <updated>2015-08-24T12:01:36.767Z</updated>
-    <content type="html"><![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>单变量线性回归,模型表达,代价函数,梯度下降</code></p>
+    <updated>2015-08-29T10:15:08.285Z</updated>
+    <content type="html"><![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>单变量线性回归,模型表达,代价函数,梯度下降法</code></p>
 <h1 id="单变量线性回归(Linear_Regression_with_One_Variable)">单变量线性回归(Linear Regression with One Variable)</h1><a id="more"></a>
 <h2 id="1-模型表达（Model_Representation）">1.模型表达（Model Representation）</h2><blockquote>
 <p>以之前的房屋交易问题为例，假使回归问题的训练集（Training Set）如下表所示：</p>
@@ -109,7 +109,7 @@
 <p>　　<br>参考资料<br><a href="http://mooc.guokr.com/note/12/" title="MOOC学院" target="_blank" rel="external">机器学习课笔记 —— Ryan Cheung</a><br><a href="http://mooc.guokr.com/note/16274/" title="MOOC学院" target="_blank" rel="external">机器学习教程个人笔记（V2.5）—— 黄海广</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>单变量线性回归,模型表达,代价函数,梯度下降</code></p>
+    <![CDATA[<p><code>Coursera机器学习（Andrew Ng）笔记</code><br><code>单变量线性回归,模型表达,代价函数,梯度下降法</code></p>
 <h1 id="单变量线性回归(Linear_Regression_with_One_Variable)">单变量线性回归(Linear Regression with One Variable)</h1>]]>
     
     </summary>
@@ -122,7 +122,7 @@
     
       <category term="机器学习" scheme="www.gcusky.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="梯度下降" scheme="www.gcusky.com/tags/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/"/>
+      <category term="梯度下降法" scheme="www.gcusky.com/tags/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/"/>
     
       <category term="模型表达" scheme="www.gcusky.com/tags/%E6%A8%A1%E5%9E%8B%E8%A1%A8%E8%BE%BE/"/>
     
